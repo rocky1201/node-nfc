@@ -6,15 +6,15 @@ DEFS_Debug := \
 	'-D_DARWIN_USE_64_BIT_INODE=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
+	'-D__MACOSX_CORE__' \
 	'-DBUILDING_NODE_EXTENSION' \
 	'-DDEBUG' \
 	'-D_DEBUG'
 
 # Flags passed to all source files.
 CFLAGS_Debug := \
-	-Os \
+	-O0 \
 	-gdwarf-2 \
-	-Wnewline-eof \
 	-mmacosx-version-min=10.5 \
 	-arch x86_64 \
 	-Wall \
@@ -40,21 +40,22 @@ CFLAGS_OBJC_Debug :=
 CFLAGS_OBJCC_Debug :=
 
 INCS_Debug := \
-	-I/Users/camilo/.node-gyp/0.8.5/src \
-	-I/Users/camilo/.node-gyp/0.8.5/deps/uv/include \
-	-I/Users/camilo/.node-gyp/0.8.5/deps/v8/include
+	-I/Users/i826871/.node-gyp/0.10.12/src \
+	-I/Users/i826871/.node-gyp/0.10.12/deps/uv/include \
+	-I/Users/i826871/.node-gyp/0.10.12/deps/v8/include \
+	-I/opt/local/include
 
 DEFS_Release := \
 	'-D_DARWIN_USE_64_BIT_INODE=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
+	'-D__MACOSX_CORE__' \
 	'-DBUILDING_NODE_EXTENSION'
 
 # Flags passed to all source files.
 CFLAGS_Release := \
 	-Os \
 	-gdwarf-2 \
-	-Wnewline-eof \
 	-mmacosx-version-min=10.5 \
 	-arch x86_64 \
 	-Wall \
@@ -80,9 +81,10 @@ CFLAGS_OBJC_Release :=
 CFLAGS_OBJCC_Release :=
 
 INCS_Release := \
-	-I/Users/camilo/.node-gyp/0.8.5/src \
-	-I/Users/camilo/.node-gyp/0.8.5/deps/uv/include \
-	-I/Users/camilo/.node-gyp/0.8.5/deps/v8/include
+	-I/Users/i826871/.node-gyp/0.10.12/src \
+	-I/Users/i826871/.node-gyp/0.10.12/deps/uv/include \
+	-I/Users/i826871/.node-gyp/0.10.12/deps/v8/include \
+	-I/opt/local/include
 
 OBJS := \
 	$(obj).target/$(TARGET)/src/nfc.o
@@ -135,7 +137,7 @@ LIBTOOLFLAGS_Release := \
 
 LIBS := \
 	-undefined dynamic_lookup \
-	-lnfc
+	-L/opt/local/lib
 
 $(builddir)/nfc.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
 $(builddir)/nfc.node: LIBS := $(LIBS)

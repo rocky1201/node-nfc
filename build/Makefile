@@ -167,7 +167,7 @@ cmd_touch = touch $@
 
 quiet_cmd_copy = COPY $@
 # send stderr to /dev/null to ignore messages when linking directories.
-cmd_copy = ln -f "$<" "$@" 2>/dev/null || (rm -rf "$@" && cp -af "$<" "$@")
+cmd_copy = rm -rf "$@" && cp -af "$<" "$@"
 
 quiet_cmd_alink = LIBTOOL-STATIC $@
 cmd_alink = rm -f $@ && ./gyp-mac-tool filter-libtool libtool $(GYP_LIBTOOLFLAGS) -static -o $@ $(filter %.o,$^)
@@ -339,8 +339,8 @@ ifeq ($(strip $(foreach prefix,$(NO_LOAD),\
 endif
 
 quiet_cmd_regen_makefile = ACTION Regenerating $@
-cmd_regen_makefile = /usr/local/lib/node_modules/node-gyp/gyp/gyp -fmake --ignore-environment "--toplevel-dir=." -I/Users/camilo/Projects/node/node-nfc/build/config.gypi -I/usr/local/lib/node_modules/node-gyp/addon.gypi -I/Users/camilo/.node-gyp/0.8.5/common.gypi "--depth=." "-Goutput_dir=." "--generator-output=build" "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/Users/camilo/.node-gyp/0.8.5" "-Dmodule_root_dir=/Users/camilo/Projects/node/node-nfc" binding.gyp
-Makefile: $(srcdir)/../../../.node-gyp/0.8.5/common.gypi $(srcdir)/build/config.gypi $(srcdir)/binding.gyp $(srcdir)/../../../../../usr/local/lib/node_modules/node-gyp/addon.gypi
+cmd_regen_makefile = /usr/local/lib/node_modules/node-gyp/gyp/gyp -fmake --ignore-environment "--toplevel-dir=." -I/Users/i826871/node_modules/node-nfc/build/config.gypi -I/usr/local/lib/node_modules/node-gyp/addon.gypi -I/Users/i826871/.node-gyp/0.10.12/common.gypi "--depth=." "-Goutput_dir=." "--generator-output=build" "-Dlibrary=shared_library" "-Dvisibility=default" "-Dnode_root_dir=/Users/i826871/.node-gyp/0.10.12" "-Dmodule_root_dir=/Users/i826871/node_modules/node-nfc" binding.gyp
+Makefile: $(srcdir)/../../.node-gyp/0.10.12/common.gypi $(srcdir)/build/config.gypi $(srcdir)/binding.gyp $(srcdir)/../../../../usr/local/lib/node_modules/node-gyp/addon.gypi
 	$(call do_cmd,regen_makefile)
 
 # "all" is a concatenation of the "all" targets from all the included
